@@ -1,7 +1,7 @@
 // This is compiled code from ts hence ugly
 "use strict";
 
-const SHADERS = {
+const SHADER_CANVAS_SHADERS = {
     "main.vert": `
         attribute vec2 a_position;
         varying vec2 v_texcoord;
@@ -77,7 +77,7 @@ function compileShader(gl, source, type) {
     }
     return shader;
 }
-function init() {
+function initShaderCanvas() {
     return __awaiter(this, void 0, void 0, function* () {
         const canvas = document.getElementById("shader-canvas");
         if (!canvas) {
@@ -91,7 +91,7 @@ function init() {
         canvas.height = window.innerHeight;
         function getShaderSource(name, type) {
             const key = `${name}.${type}`;
-            const source = SHADERS[key];
+            const source = SHADER_CANVAS_SHADERS[key];
 
             if (!source) {
                 throw new Error(`Shader not found in constants: ${key}`);
@@ -130,12 +130,12 @@ function init() {
         gl.enableVertexAttribArray(positionAttributeLocation);
         const resolutionUniformLocation = gl.getUniformLocation(shaderProgram, "iResolution");
         const timeUniformLocation = gl.getUniformLocation(shaderProgram, "iTime");
-        animate(canvas, gl, resolutionUniformLocation, timeUniformLocation);
+        animateShaderCanvas(canvas, gl, resolutionUniformLocation, timeUniformLocation);
     });
 }
-function animate(canvas, gl, resolutionUniformLocation, timeUniformLocation) {
-    canvas.width = window.innerWidth * window.devicePixelRatio * 0.5;
-    canvas.height = window.innerHeight * window.devicePixelRatio * 0.5;
+function animateShaderCanvas(canvas, gl, resolutionUniformLocation, timeUniformLocation) {
+    canvas.width = window.innerWidth * window.devicePixelRatio * 1.0;
+    canvas.height = window.innerHeight * window.devicePixelRatio * 1.0;
     gl.viewport(0, 0, canvas.width, canvas.height);
     gl.clearColor(0.0, 0.0, 0.0, 1.0);
     gl.clear(gl.COLOR_BUFFER_BIT);
@@ -145,6 +145,6 @@ function animate(canvas, gl, resolutionUniformLocation, timeUniformLocation) {
     if (timeUniformLocation)
         gl.uniform1f(timeUniformLocation, time);
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-    requestAnimationFrame(() => animate(canvas, gl, resolutionUniformLocation, timeUniformLocation));
+    requestAnimationFrame(() => animateShaderCanvas(canvas, gl, resolutionUniformLocation, timeUniformLocation));
 }
-init();
+initShaderCanvas();
