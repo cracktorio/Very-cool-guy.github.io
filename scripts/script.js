@@ -1,5 +1,12 @@
 var enabled = !document.cookie.includes('barrelroll=disabled')
 
+function YeetusdeletusReze() {
+    const rezeVideo = document.getElementById('reze-video')
+    if (rezeVideo) {
+        rezeVideo.classList.add('slide-out-right')
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     const btn = document.getElementById('barrelroll')
     if (btn) {
