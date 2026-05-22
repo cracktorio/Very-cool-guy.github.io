@@ -1,4 +1,3 @@
-# i might not respond to PRs and issues in about 8 hours since im sleeping. you are encouraged to keep submitting.
 # Very-cool-guy.github.io
 this is a website that everybody can change!!!
 

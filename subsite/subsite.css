@@ -57,6 +57,11 @@ note: to change using class name put dot before class name
     font-style: italic;
 }
 
+.subtitle {
+    font-style: italic;
+    color: gray;
+    font-size: 50%;
+}
 /* 
 change by id
 note: to change using id put # before id
