@@ -12,3 +12,5 @@ Check out your library books and return them on time!
 remember to leave the site gayer then when you found it
 
 oh yeah and FIX BUGS PLZPLZPLZ
+
+resources like pictures and gifs in the `resources/` folder! (i can move them myself but it would be nice)
