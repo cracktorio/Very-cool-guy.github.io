@@ -16,7 +16,7 @@ async function loadData() {
 const statId = ["str","agi","con","int","wis","chr"];
 const statNames = {str: 'Strength', agi: 'Agility', con: 'Constitution', int: 'Intellect', wis: 'Wisdom', chr: 'Charisma'};
 const skillId = ["athletics","acrobatics","sleight_of_hands","stealth","arcana","history","investigation","nature","religion","animal_handling","insight","medicine","perception","survival","deception","intimidation","performance","persuasion"];
-const skillName = {athletics:"athletics",acrobatics:"acrobatics",sleight_of_hands:"sleight_of_hands",stealth:"stealth",arcana:"arcana",history:"history",investigation:"investigation",nature:"nature",religion:"religion",animal_handling:"animal_handling",insight:"insight",medicine:"medicine",perception:"perception",survival:"survival",deception:"deception",intimidation:"intimidation",performance:"performance",persuasion:"persuasion"};
+const skillName = {athletics:"athletics",acrobatics:"acrobatics",sleight_of_hands:"sleight of hands",stealth:"stealth",arcana:"arcana",history:"history",investigation:"investigation",nature:"nature",religion:"religion",animal_handling:"animal handling",insight:"insight",medicine:"medicine",perception:"perception",survival:"survival",deception:"deception",intimidation:"intimidation",performance:"performance",persuasion:"persuasion"};
 const skillStat = {athletics:"str",acrobatics:"agi",sleight_of_hands:"agi",stealth:"agi",arcana:"int",history:"int",investigation:"int",nature:"int",religion:"int",animal_handling:"wis",insight:"wis",medicine:"wis",perception:"wis",survival:"wis",deception:"chr",intimidation:"chr",performance:"chr",persuasion:"chr"};
 var statValue = {str:10,agi:10,con:10,int:10,wis:10,chr:10};
 var selectedRace = '';
