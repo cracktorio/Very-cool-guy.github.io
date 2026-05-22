@@ -126,3 +126,83 @@ body {
     width: 45rem;
     padding: 2rem;
 }
+
+#soundboard {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+
+    gap: 10px;
+
+    width: 90%;
+    max-width: 1000px;
+
+    margin: 30px auto;
+    padding: 15px;
+
+    background: rgba(0,0,0,0.85);
+
+    border: 3px solid white;
+    border-radius: 10px;
+}
+
+#soundboard button {
+    height: 80px;
+
+    background: #222;
+    color: white;
+
+    border: 2px solid white;
+
+    font-size: 16px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition: 0.15s;
+}
+
+#soundboard button:hover {
+    background: #444;
+    transform: scale(1.03);
+}
+
+#soundboard button:active {
+    transform: scale(0.95);
+}
+
+#clear-clicks {
+    /* position: fixed; */
+    /* bottom: 20px; */
+    /* right: 20px; */
+
+    background: linear-gradient(135deg, #ff4da6, #a64dff);
+    color: white;
+
+    margin : 10px;
+
+    border: 3px solid white;
+    border-radius: 14px;
+
+    padding: 14px 20px;
+
+    font-size: 18px;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow: 0 0 15px rgba(255,255,255,0.4);
+
+    z-index: 9999;
+
+    transition: all 0.2s ease;
+}
+
+#clear-clicks:hover {
+    transform: scale(1.08) rotate(-2deg);
+
+    box-shadow: 0 0 25px rgba(255,255,255,0.8);
+}
+
+#clear-clicks:active {
+    transform: scale(0.95);
+}
