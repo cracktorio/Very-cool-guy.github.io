@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let chatResponses = [];
 
   // Load responses from JSON file
-  fetch("./chatResponses.json")
+  fetch("chatResponses.json")
     .then(response => response.json())
     .then(data => {
       chatResponses = data;
