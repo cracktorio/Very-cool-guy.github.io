@@ -63,6 +63,14 @@
     <img src="resources/protogen.jpg" alt="Clanker"> <!-- i also have no clue if this will work -->
     <img src="resources/1984boys.gif" alt="boyshehe">
     </marquee>
+
+    <!-- PING PONG BOTS WINDOW -->
+    <div style="text-align: center; margin: 20px auto; width: 440px; padding: 15px; border: 3px solid #444; background: #111; color: #0f0; border-radius: 12px; box-shadow: 0 0 15px rgba(0,255,0,0.2); font-family: monospace;">
+      <h3 style="margin: 0 0 10px 0; letter-spacing: 2px;">🤖 BOT PONG 🤖</h3>
+      <canvas id="pong" width="400" height="200" style="border: 2px solid #0f0; background: #000; display: block; margin: 0 auto; box-shadow: inset 0 0 10px #0f0;"></canvas>
+      <p style="margin: 10px 0 0 0; font-size: 12px; color: #888;">Infinite Rally Mode</p>
+    </div>
+
     <details>
       <summary>plot of the <i>Transformers</i> final battle:</summary>
       Galvatron gloats to the Autobots that with the power of Fortress Maximus he is unstoppable. As they hang helpless in the air, he first shocks and then drops them all to the ground. Side Burn drags himself to the edge of a huge crater, at the bottom of which Optimus Prime lays battered. As Optimus struggles up, Scourge and Ruination burst through the crater wall and open fire on the Autobot leader. Sky-Byte and the Predacon trio peer cautiously out of the hole as well, worrying what Galvatron will do to them if he spots them. Unfortunately for them, Galvatron already has spotted them, and orders them to attack the Autobots. Figuring that Galvatron will always be the scarier of the two options, the four Predacons get ready to fight, and are promptly trampled by the oncoming forces.
@@ -110,5 +118,110 @@
       <p>
         happy birthday Nyun D. Hanayagi
       </p>
+
+    <script>
+    (function() {
+      const canvas = document.getElementById('pong');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      const width = canvas.width;
+      const height = canvas.height;
+
+      let ballX = width / 2;
+      let ballY = height / 2;
+      let ballSpeedX = 4;
+      let ballSpeedY = 3;
+      let ballSize = 8;
+
+      let paddle1Y = height / 2 - 20;
+      let paddle2Y = height / 2 - 20;
+      const paddleHeight = 40;
+      const paddleWidth = 8;
+      const paddleSpeed = 5;
+
+      function drawRect(x, y, w, h, color) {
+        ctx.fillStyle = color;
+        ctx.fillRect(x, y, w, h);
+      }
+
+      function drawCircle(x, y, r, color) {
+        ctx.fillStyle = color;
+        ctx.beginPath();
+        ctx.arc(x, y, r, 0, Math.PI * 2, false);
+        ctx.fill();
+      }
+
+      function update() {
+        ballX += ballSpeedX;
+        ballY += ballSpeedY;
+
+        if (ballY - ballSize < 0 || ballY + ballSize > height) {
+          ballSpeedY = -ballSpeedY;
+        }
+
+        let p1Center = paddle1Y + paddleHeight / 2;
+        if (p1Center < ballY - 5) {
+          paddle1Y += paddleSpeed;
+        } else if (p1Center > ballY + 5) {
+          paddle1Y -= paddleSpeed;
+        }
+
+        let p2Center = paddle2Y + paddleHeight / 2;
+        if (p2Center < ballY - 5) {
+          paddle2Y += paddleSpeed;
+        } else if (p2Center > ballY + 5) {
+          paddle2Y -= paddleSpeed;
+        }
+
+        if (ballX - ballSize < paddleWidth && ballY > paddle1Y && ballY < paddle1Y + paddleHeight) {
+          ballSpeedX = -ballSpeedX;
+          ballX = paddleWidth + ballSize; 
+          let collidePoint = ballY - (paddle1Y + paddleHeight / 2);
+          ballSpeedY = collidePoint * 0.2;
+        }
+
+        if (ballX + ballSize > width - paddleWidth && ballY > paddle2Y && ballY < paddle2Y + paddleHeight) {
+          ballSpeedX = -ballSpeedX;
+          ballX = width - paddleWidth - ballSize;
+          let collidePoint = ballY - (paddle2Y + paddleHeight / 2);
+          ballSpeedY = collidePoint * 0.2;
+        }
+
+        if (ballX < 0 || ballX > width) {
+          ballX = width / 2;
+          ballY = height / 2;
+          ballSpeedX = -ballSpeedX;
+          ballSpeedY = 3 * (Math.random() > 0.5 ? 1 : -1);
+        }
+
+        if (paddle1Y < 0) paddle1Y = 0;
+        if (paddle1Y + paddleHeight > height) paddle1Y = height - paddleHeight;
+        if (paddle2Y < 0) paddle2Y = 0;
+        if (paddle2Y + paddleHeight > height) paddle2Y = height - paddleHeight;
+      }
+
+      function draw() {
+        drawRect(0, 0, width, height, '#000');
+
+        for (let i = 0; i < height; i += 15) {
+          drawRect(width / 2 - 1, i, 2, 10, '#0f0');
+        }
+
+        drawRect(0, paddle1Y, paddleWidth, paddleHeight, '#0f0');
+        drawRect(width - paddleWidth, paddle2Y, paddleWidth, paddleHeight, '#0f0');
+
+        drawCircle(ballX, ballY, ballSize, '#0f0');
+      }
+
+      function loop() {
+        update();
+        draw();
+        requestAnimationFrame(loop);
+      }
+      
+      loop();
+    })();
+    </script>
+
   </body>
 </html>
