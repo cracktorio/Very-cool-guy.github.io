@@ -25,10 +25,13 @@ img {
     height: auto;
 }
 
+nav {
+    font-size: 30px;
+}
+
 a {
     color: violet;
     background-color: none;
-    font-size: 30px;
     text-decoration: none;
     margin-right: 10px;
 }
