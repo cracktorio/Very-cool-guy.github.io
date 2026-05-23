@@ -918,16 +918,17 @@
                         diamondPaddle.bonus -= PROJECTILE_DAMAGE
                         diamondPaddle.h = paddle.h + diamondPaddle.bonus
                         balls.splice(i, 1)
-                        if (paddle.h <= 0) {
-                            if(DIE_REFRESH){
-                                die()
-                            }else{
-                                livesLostCount++
-                                paddle.h = PADDLE_HEIGHT_INITIAL
-                                diamondPaddle.bonus = INITIAL_DIAMOND_BONUS
-                                paddle.y = (VIRTUAL_HEIGHT - PADDLE_HEIGHT_INITIAL) / 2
-                            }
-                        }
+                        // if (paddle.h <= 0) {
+                        //     if(DIE_REFRESH){
+                        //         die()
+                        //         i = 0;
+                        //     }else{
+                        //         livesLostCount++
+                        //         paddle.h = PADDLE_HEIGHT_INITIAL
+                        //         diamondPaddle.bonus = INITIAL_DIAMOND_BONUS
+                        //         paddle.y = (VIRTUAL_HEIGHT - PADDLE_HEIGHT_INITIAL) / 2
+                        //     }
+                        // }
                         continue // Skip block collision check for this destroyed projectile
                     }
                     if (ball.type === 'diamond') {
@@ -959,6 +960,7 @@
                     if (paddle.h <= 0) {
                             if(DIE_REFRESH){
                                 die()
+                                i = 0
                             }else{
                                 livesLostCount++
                                 paddle.h = PADDLE_HEIGHT_INITIAL
