@@ -11,8 +11,10 @@ body {
 }
 
 header {
-  padding: 2vh 0;
+  max-height: 70px;
+  overflow: hidden;
   border-radius: 0.75vh;
+  max-width: 98.5vw;
   background: linear-gradient(
     90deg,
     #e40303,
@@ -30,7 +32,12 @@ header {
     #e40303
   );
   background-size: 200%, 100%;
-  animation: moveGradient 5s linear infinite;
+  animation: moveGradient 10s linear infinite;
+  transition: max-height 0.3s ease-out;
+}
+
+header:hover {
+  max-height: 500px;
 }
 
 @keyframes moveGradient {
