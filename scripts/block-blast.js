@@ -374,6 +374,7 @@
                     break
                 case 'diamond':
                     ctx.fillStyle = '#32ddff'
+                    break
                 default:
                     ctx.fillStyle = '#777'
                     break
@@ -436,6 +437,7 @@
                             break
                         case 'diamond':
                             color = '#32ddff'
+                            break
                     }
                     const particle = new BlockBreakParticle(
                         px,
@@ -851,7 +853,7 @@
         // Clamp paddle position within vertical bounds
         paddle.y = Math.max(0, Math.min(VIRTUAL_HEIGHT - paddle.h, paddle.y))
         // Update diamond paddle
-        diamondPaddle.y = paddle.y
+        diamondPaddle.y = paddle.y - diamondPaddle.bonus / 2.0
 
         // Update particles and remove expired ones
         for (let i = 0; i < brokenBlockParticles.length; i++) {
