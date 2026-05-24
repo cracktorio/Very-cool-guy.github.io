@@ -1,0 +1,88 @@
+#bsod-overlay {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(135deg, #f7a8d8 0%, #b8a4e3 50%, #7fc8f8 100%);
+  color: #fff;
+  z-index: 999999;
+  font-family: "Segoe UI", "Segoe UI Symbol", Arial, sans-serif;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 8vh 12vw;
+  box-sizing: border-box;
+  cursor: default;
+  user-select: none;
+  text-shadow: 0 0 12px rgba(255, 182, 222, 0.7);
+}
+
+#bsod-overlay.bsod-visible {
+  display: flex;
+}
+
+#bsod-overlay .bsod-frown {
+  font-size: 12rem;
+  line-height: 1;
+  margin: 0 0 2rem 0;
+  font-weight: 100;
+  color: #fff0fa;
+  text-shadow: 0 0 24px #ff8fd6, 0 0 48px #ff6fcf;
+}
+
+#bsod-overlay .bsod-message {
+  font-size: 1.6rem;
+  font-weight: 300;
+  margin: 0 0 1rem 0;
+  max-width: 70%;
+  line-height: 1.3;
+}
+
+#bsod-overlay .bsod-progress {
+  font-size: 1.4rem;
+  font-weight: 400;
+  margin: 1.5rem 0;
+}
+
+#bsod-overlay .bsod-details {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2rem;
+  align-items: flex-start;
+}
+
+#bsod-overlay .bsod-qr {
+  width: 120px;
+  height: 120px;
+  background: #fff;
+  padding: 6px;
+  box-sizing: border-box;
+  flex-shrink: 0;
+  border: 2px solid #ffb6e1;
+  border-radius: 8px;
+  box-shadow: 0 0 16px rgba(255, 143, 214, 0.6);
+}
+
+#bsod-overlay .bsod-qr img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+#bsod-overlay .bsod-info {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  font-weight: 300;
+}
+
+#bsod-overlay .bsod-info .bsod-stop {
+  margin-top: 0.8rem;
+  font-family: Consolas, "Courier New", monospace;
+}
+
+#bsod-overlay .bsod-hint {
+  position: absolute;
+  bottom: 1rem;
+  right: 1.5rem;
+  font-size: 0.8rem;
+  opacity: 0.6;
+}
