@@ -70,6 +70,7 @@
     let balls = []
     let brokenBlockParticles = []
     let explosionParticles = []
+    let floatyTexts = [] //aka flavor text
 
     /* --- GAME MANAGEMENT FUNCTIONS --- */
     function startGame() {
@@ -101,6 +102,8 @@
         isPaused = false
         paddle.h = PADDLE_HEIGHT_INITIAL
         diamondPaddle.h = paddle.h
+
+        floatyTexts.push(new floatyText("Lives -1", VIRTUAL_WIDTH * 0.2, 40, '#ff0000')) //flavor text to indicate that you lost a life
     }
 
     function togglePause() {
@@ -212,6 +215,55 @@
     document.getElementById('pauseBtn').addEventListener('click', togglePause)
     document.getElementById('restartBtn').addEventListener('click', startGame)
 
+    /* --- FLAVOR TEXT --- */
+    //FLAVOR TEXT THAT I NAMED FLOATY TEXT BECAUSE IT FLOATS AWAY
+    function floatyText(text, x, y, size, color, direction = "down", lifetime = 40){
+        this.text = text
+        this.x = x
+        this.y = y
+        this.size = size
+        this.color = color
+        this.direction = direction
+        this.lifetime = lifetime
+        //extra variables for stuff
+        this.LIFETIME = lifetime;
+        this.expired = false;
+
+        //update position and check if too old
+        this.update = function(dt){
+            switch(direction){
+                case "up":
+                    this.y-=dt
+                    break
+                case "down":
+                    this.y+=dt
+                    break
+                case "right":
+                    this.x+=dt
+                    break
+                case "left":
+                    this.x-=dt
+                    break
+            }
+            if(this.lifetime-- <= 0){//decrement lifetime and also check if I should go away~
+                this.expired = true
+            }
+        }//end update
+
+        this.display = function(){
+            ctx.globalAlpha(this.lifetime/this.LIFETIME) //Text fades out
+            ctx.fillStyle = this.color
+            ctx.font = `${this.size}px system-ui, sans-serif`
+            ctx.textAlign = 'center'
+            ctx.fillText(
+                this.text,
+                this.x,
+                this.y
+            )
+            ctx.globalAlpha(1)//don't wanna make everything else transparent
+        }// end display
+    }//please work I'm making this all in one go without testing
+
     /* --- GAME OBJECTS --- */
 
     // PADDLE
@@ -222,7 +274,7 @@
         h: PADDLE_HEIGHT_INITIAL,
         dy: 0, // Velocity in y-direction
     }
-    // diamodn paddle
+    // diamond paddle
     let diamondPaddle = {
         x: 30,
         y: (VIRTUAL_HEIGHT - PADDLE_HEIGHT_INITIAL) / 2,
@@ -888,6 +940,16 @@
             }
         }
 
+        // Update flavor text and remove expired ones
+        for (let i = 0; i < floatyTexts.length; i++) {
+            const text = floatyTexts[i]
+            text.update(dt)
+            if (text.expired) {
+                text.splice(i, 1)
+                i--
+            }
+        }
+
         // Ball movement and collisions
         for (let i = balls.length - 1; i >= 0; i--) {
             // Iterate backward for safe removal
@@ -1134,6 +1196,10 @@
         }
         for (const particle of explosionParticles) {
             particle.display()
+        }
+        // Draw flavor text
+        for (const text of floatyTexts) {
+            text.display()
         }
 
         // Scoreboard - Lives
