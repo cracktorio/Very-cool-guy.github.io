@@ -102,8 +102,8 @@
         isPaused = false
         paddle.h = PADDLE_HEIGHT_INITIAL
         diamondPaddle.h = paddle.h
-
-        floatyTexts.push(new floatyText("Lives -1", VIRTUAL_WIDTH * 0.2, 40, '#ff0000')) //flavor text to indicate that you lost a life
+        //                             text, x, y, size, color, direction = "down", lifetime = 40
+        floatyTexts.push(new floatyText("Lives -1", VIRTUAL_WIDTH * 0.2, 40, 30, '#ff0000')) //flavor text to indicate that you lost a life
     }
 
     function togglePause() {
@@ -231,25 +231,26 @@
 
         //update position and check if too old
         this.update = function(dt){
+            let speed = dt * 300
             switch(this.direction){
                 case "up":
-                    this.y-=dt
+                    this.y-=speed
                     break
                 case "down":
-                    this.y+=dt
+                    this.y+=speed
                     break
                 case "right":
-                    this.x+=dt
+                    this.x+=speed
                     break
                 case "left":
-                    this.x-=dt
+                    this.x-=speed
                     break
             }
             
             if(this.lifetime <= 0){//decrement lifetime and also check if I should go away~
                 this.expired = true
             }
-            this.lifetime-=dt
+            this.lifetime-=speed
         }//end update
 
         this.display = function(){
