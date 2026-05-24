@@ -1,0 +1,13 @@
+#redeem {
+    background-color: #FFFFFF;
+    line-height: 1.5;
+    padding: 0.45rem 0.75rem;
+    margin: 0.8rem;
+    border-radius: 0.5rem;
+    border:none;
+    transition: background-color 0.25s ease;
+
+    &:hover {
+        background-color: #EFEFEF;
+    }
+}

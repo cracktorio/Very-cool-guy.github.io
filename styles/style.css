@@ -1,95 +1,114 @@
 /* The following css creates the beautiful lesbian flag */
 
-html, body {
-    margin: 5;
-    width: 100%;
-    min-height: 100%;
-    overflow-y: auto;
-    overflow-x: hidden;
-    font-family: sans-serif;
+html,
+body {
+  margin: 5;
+  width: 100%;
+  min-height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  font-family: sans-serif;
 }
 
 header {
-    padding: 2vh 0;
-    border-radius: .75vh;
-    background: linear-gradient(90deg,
-    #E40303,
-    #FF8C00,
-    #FFED00,
+  max-height: 70px;
+  overflow: hidden;
+  border-radius: 0.75vh;
+  max-width: 98.5vw;
+  background: linear-gradient(
+    90deg,
+    #e40303,
+    #ff8c00,
+    #ffed00,
     #008026,
-    #004CFF,
+    #004cff,
     #732982,
-    #E40303,
-    #FF8C00,
-    #FFED00,
+    #e40303,
+    #ff8c00,
+    #ffed00,
     #008026,
-    #004CFF,
+    #004cff,
     #732982,
-    #E40303);
-    background-size: 200%, 100%;
-    animation:  moveGradient 5s linear infinite;
-
+    #e40303
+  );
+  background-size: 200%, 100%;
+  animation: moveGradient 10s linear infinite;
+  transition: max-height 0.3s ease-out;
 }
 
+header:hover {
+  max-height: 500px;
+}
 
 @keyframes moveGradient {
-    from {
-        background-position: 0% 0%;
-    }
-    to {
-        background-position: 100% 0%;
-    }
+  from {
+    background-position: 0% 0%;
+  }
+  to {
+    background-position: 100% 0%;
+  }
 }
 
 header a {
-    color: white;
-    mix-blend-mode: difference;
-    margin: 1%;
-    cursor: pointer;
+  color: white;
+  mix-blend-mode: difference;
+  margin: 1%;
+  cursor: pointer;
 }
-
 
 /* Animated lesbian flag */
 body {
-    background: linear-gradient(
-        180deg,
-        #D52D00 0%,
-        #EF7627 14.28%,
-        #FF9A56 28.56%,
-        #FFFFFF 42.84%,
-        #D162A4 57.12%,
-        #B55690 71.40%,
-        #A30262 100%
-    );
+  background: linear-gradient(
+    180deg,
+    #d52d00 0%,
+    #ef7627 14.28%,
+    #ff9a56 28.56%,
+    #ffffff 42.84%,
+    #d162a4 57.12%,
+    #b55690 71.4%,
+    #a30262 100%
+  );
 
-    background-size: 200% 200%;
-    animation: prideWave 12s ease-in-out infinite;
-    transition: transform 1s;
+  background-size: 200% 200%;
+  animation: prideWave 12s ease-in-out infinite;
+  transition: transform 1s;
 }
 
-.barrelroll:active{
-    transform: rotate(1turn);
-    transition: none;
+.barrelroll:active {
+  transform: rotate(1turn);
+  transition: none;
+}
+
+#barrelroll {
+    background-color: #bb5994;
+    border: groove;
+    color: white;
+    padding: 15px 32px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
 }
 
 .dropdowner {
-    padding: 2px;
-    width: 50%;
-    border: 4px solid #A30262;
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-    text-indent: 20px;
+  padding: 2px;
+  width: 50%;
+  border: 4px solid #a30262;
+  font-family:
+    "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans",
+    Arial, sans-serif;
+  text-indent: 20px;
 }
 
 @keyframes prideWave {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .image-container img {
@@ -97,7 +116,7 @@ body {
   height: auto;
 }
 
-#leon_be_like{
+#leon_be_like {
   background-color: #bb5994;
   border: groove;
   color: rgb(255, 255, 255);
@@ -111,18 +130,85 @@ body {
 }
 
 @keyframes spin3d {
-        0%   { transform: perspective(600px) rotateY(0deg); }
-        100% { transform: perspective(600px) rotateY(360deg); }
-      }
+  0% {
+    transform: perspective(600px) rotateY(0deg);
+  }
+  100% {
+    transform: perspective(600px) rotateY(360deg);
+  }
+}
 .kirky-img {
-    position: relative;
-    display: inline-block;
-    width: 8rem;
-    height: 8rem;
+  position: relative;
+  display: inline-block;
+  width: 8rem;
+  height: 8rem;
 }
 
 #kirky-container {
-    height: 45rem;
-    width: 45rem;
-    padding: 2rem;
+  height: 45rem;
+  width: 45rem;
+  padding: 2rem;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 0;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+nav a {
+    text-decoration: none;
+    color: inherit;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+}
+
+nav ul a {
+    text-decoration: none;
+    color: #FFFFFF;
+    font-size: 1rem;
+    font-family: 'Playfair Display', Impact;
+}
+
+
+.rk-rpanel {
+    position: fixed;
+    top: 160px;
+    right: 1px;
+    width: 210px;
+    background-color: #cccccc;
+    border-radius: 8px;
+    border: 2px solid #cccccc;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    z-index: 232;
+}
+
+.slide-out-right {
+    animation: slideOutRight 0.5s ease-in-out forwards;
+}
+
+@keyframes slideOutRight {
+    from {
+        right: 1px;
+        opacity: 1;
+    }
+    to {
+        right: -220px;
+        opacity: 0;
+    }
+}
+.movie-player {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  background: #000;
 }

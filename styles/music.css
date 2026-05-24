@@ -1,0 +1,123 @@
+#boombox {
+    position: fixed;
+    bottom: 15px;
+    left: 15px;
+    z-index: 99999;
+
+    font-family: Arial;
+    color: white;
+}
+
+#boom-toggle {
+    width: 60px;
+    height: 60px;
+
+    background: #111;
+    border: 3px solid #ff4da6;
+    border-radius: 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    font-size: 28px;
+
+    box-shadow: 0 0 15px #ff4da6;
+}
+
+#boom-content {
+    width: 300px;
+
+    margin-top: 10px;
+    padding: 15px;
+
+    background: rgba(0,0,0,0.9);
+
+    border: 3px solid #ff4da6;
+    border-radius: 15px;
+
+    backdrop-filter: blur(8px);
+}
+
+#boombox.closed #boom-content {
+    display: none;
+}
+
+#song-name {
+    font-weight: bold;
+    margin-bottom: 10px;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#seekbar {
+    width: 100%;
+}
+
+#time {
+    display: flex;
+    justify-content: space-between;
+
+    font-size: 12px;
+
+    margin-top: 5px;
+}
+
+#controls {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+
+    margin-top: 15px;
+}
+
+#controls button {
+    background: #222;
+    color: white;
+
+    border: 2px solid #ff4da6;
+    border-radius: 10px;
+
+    padding: 8px;
+
+    cursor: pointer;
+}
+
+#controls button:hover {
+    background: #ff4da6;
+}
+
+#volume-container {
+    margin-top: 15px;
+}
+
+#volume {
+    width: 100%;
+}
+
+#playlist {
+    margin-top: 15px;
+
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.song {
+    padding: 5px;
+
+    border-bottom: 1px solid #444;
+
+    cursor: pointer;
+}
+
+.song:hover {
+    background: #333;
+}
+
+.song.active {
+    color: #ff4da6;
+}
