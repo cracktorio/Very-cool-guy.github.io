@@ -18,7 +18,7 @@ button - buttons...
 
 body {
     background-color:lightcyan;
-    font-size: 250%;
+    font-size: 25px;
 }
 
 img {
@@ -29,6 +29,8 @@ img {
 nav {
     font-size: 30px;
     background-color: lightcyan;
+    display: flex;
+    padding: 10px;
 }
 
 a {
@@ -100,5 +102,7 @@ check first fish image in whenthe gallery
 
 
 #info {
-    background-color: coral;
+    background-color: purple;
+    display: flex;
+    padding: 5px;
 }
