@@ -106,7 +106,7 @@
         ctx.font = '30px system-ui, sans-serif'
         let textWidth = ctx.measureText(`Lives: ${MAX_LIVES - livesLostCount}`).width
         //                             text, x, y, size, color, textAlign = 'right', direction = "down", lifetime = 40
-        floatyTexts.push(new floatyText("Lives -1", VIRTUAL_WIDTH * 0.2 + textWidth/2, 40, 30, '#ff0000')) //flavor text to indicate that you lost a life
+        floatyTexts.push(new floatyText("Lives -1", VIRTUAL_WIDTH * 0.2 + textWidth/2, 40, 30, '#ff0000', 'right', 'down', 60)) //flavor text to indicate that you lost a life
     }
 
     function togglePause() {
@@ -235,7 +235,7 @@
 
         //update position and check if too old
         this.update = function(dt){
-            let speed = dt * 60
+            let speed = dt * 30
             switch(this.direction){
                 case "up":
                     this.y-=speed
@@ -265,7 +265,21 @@
             ctx.fillText(this.text, this.x, this.y)
             ctx.globalAlpha = 1//don't wanna make everything else transparent
         }// end display
-    }//please work I'm making this all in one go without testing
+    }
+    function score(amount, color){
+        if(amount === 0)
+            return
+        
+        currentScore += amount
+        
+        // add flavor text for score increase
+        let color = '#777'
+        ctx.font = '30px system-ui, sans-serif'
+        let textWidth = ctx.measureText(`Score: ${currentScore}`).width
+        //                             text, x, y, size, color, textAlign = 'right', direction = "down", lifetime = 40
+        let text = ((amount >= 0) ? "+" : "") + `${amount}`
+        floatyTexts.push(new floatyText(text, VIRTUAL_WIDTH * 0.4 + textWidth/2, 40, 30, color))
+    }
 
     /* --- GAME OBJECTS --- */
 
@@ -634,10 +648,7 @@
                         }
                         // add flavor text for score increase
                         let color = '#ffcc66'
-                        ctx.font = '30px system-ui, sans-serif'
-                        let textWidth = ctx.measureText(`Score: ${currentScore}`).width
-                        //                             text, x, y, size, color, textAlign = 'right', direction = "down", lifetime = 40
-                        floatyTexts.push(new floatyText(`+${pointCount}`, VIRTUAL_WIDTH * 0.4 + textWidth/2, 40, 30, color))
+                        score(pointCount, color)
                     }, 250)
                     break
                     
@@ -657,7 +668,7 @@
                     }
                     break
             }
-            currentScore++
+            // currentScore++
         }
 
         this.checkForCollisions = function (ball) {
@@ -689,10 +700,7 @@
                         color = '#ffffff'
                         break
                 }// projectiles and diamonds shouldn't be breaking blocks anyways
-                ctx.font = '30px system-ui, sans-serif'
-                let textWidth = ctx.measureText(`Score: ${currentScore}`).width
-                //                             text, x, y, size, color, textAlign = 'right', direction = "down", lifetime = 40
-                floatyTexts.push(new floatyText("+1", VIRTUAL_WIDTH * 0.4 + textWidth/2, 40, 30, color))
+                score(1, color)
                 
                 return true
             }
@@ -734,10 +742,7 @@
                     }
                     // add flavor text for score increase
                     let color = '#6464fa'
-                    ctx.font = '30px system-ui, sans-serif'
-                    let textWidth = ctx.measureText(`Score: ${currentScore}`).width
-                    //                             text, x, y, size, color, textAlign = 'right', direction = "down", lifetime = 40
-                    floatyTexts.push(new floatyText(`+${pointCount}`, VIRTUAL_WIDTH * 0.4 + textWidth/2, 40, 30, color))
+                    score(pointCount, color)
                     
                     ball.isDestroyed = true // Destroy the bomb ball
 
@@ -778,10 +783,7 @@
                             color = '#ffffff'
                             break
                     }// projectiles and diamonds shouldn't be breaking blocks anyways
-                    ctx.font = '30px system-ui, sans-serif'
-                    let textWidth = ctx.measureText(`Score: ${currentScore}`).width
-                    //                             text, x, y, size, color, textAlign = 'right', direction = "down", lifetime = 40
-                    floatyTexts.push(new floatyText("+1", VIRTUAL_WIDTH * 0.4 + textWidth/2, 40, 30, color))
+                    score(1, color)
                 }
             }
 
@@ -1082,6 +1084,7 @@
                                 paddle.y = (VIRTUAL_HEIGHT - PADDLE_HEIGHT_INITIAL) / 2
                             }
                     }
+                    score(-1, '#ff4444')
                     continue // Skip block collision check for this destroyed projectile
                 }
                 if (ball.type === 'diamond') {
@@ -1089,6 +1092,7 @@
                     diamondPaddle.bonus += DIAMOND_DAMAGE
                     diamondPaddle.h = paddle.h + diamondPaddle.bonus
                     balls.splice(i, 1)
+                    score((Math.random() < 0.5) ? 1 : 2, '#32ddff')
                     continue // Skip block collision check for this destroyed diamond
                 }
             }
