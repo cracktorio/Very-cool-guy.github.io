@@ -106,7 +106,7 @@
         ctx.font = '30px system-ui, sans-serif'
         let textWidth = ctx.measureText(`Lives: ${MAX_LIVES - livesLostCount}`).width
         //                             text, x, y, size, color, textAlign = 'right', direction = "down", lifetime = 40
-        floatyTexts.push(new floatyText("Lives -1", VIRTUAL_WIDTH * 0.2 + textWidth/2, 40, 30, '#ff0000')) //flavor text to indicate that you lost a life
+        floatyTexts.push(new floatyText("Lives -1", VIRTUAL_WIDTH * 0.2 + textWidth/2, 40, 30, '#ff0000', 'right', 'down', 60)) //flavor text to indicate that you lost a life
     }
 
     function togglePause() {
@@ -235,7 +235,7 @@
 
         //update position and check if too old
         this.update = function(dt){
-            let speed = dt * 60
+            let speed = dt * 30
             switch(this.direction){
                 case "up":
                     this.y-=speed
