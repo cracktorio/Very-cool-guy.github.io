@@ -1084,6 +1084,7 @@
                                 paddle.y = (VIRTUAL_HEIGHT - PADDLE_HEIGHT_INITIAL) / 2
                             }
                     }
+                    score(-1, '#ff4444')
                     continue // Skip block collision check for this destroyed projectile
                 }
                 if (ball.type === 'diamond') {
@@ -1091,6 +1092,7 @@
                     diamondPaddle.bonus += DIAMOND_DAMAGE
                     diamondPaddle.h = paddle.h + diamondPaddle.bonus
                     balls.splice(i, 1)
+                    score((Math.random() < 0.5) ? 1 : 2, '#32ddff')
                     continue // Skip block collision check for this destroyed diamond
                 }
             }
