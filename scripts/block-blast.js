@@ -258,7 +258,7 @@
         }//end update
 
         this.display = function(){
-            ctx.globalAlpha = max(0, (this.lifetime/this.LIFETIME)) //Text fades out
+            ctx.globalAlpha = Math.max(0, (this.lifetime/this.LIFETIME)) //Text fades out
             ctx.font = `${this.size}px system-ui, sans-serif`
             ctx.fillStyle = this.color
             ctx.textAlign = this.textAlign
