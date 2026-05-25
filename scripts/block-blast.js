@@ -265,7 +265,21 @@
             ctx.fillText(this.text, this.x, this.y)
             ctx.globalAlpha = 1//don't wanna make everything else transparent
         }// end display
-    }//please work I'm making this all in one go without testing
+    }
+    function score(amount, color){
+        if(amount === 0)
+            return
+        
+        currentScore += amount
+        
+        // add flavor text for score increase
+        let color = '#777'
+        ctx.font = '30px system-ui, sans-serif'
+        let textWidth = ctx.measureText(`Score: ${currentScore}`).width
+        //                             text, x, y, size, color, textAlign = 'right', direction = "down", lifetime = 40
+        let text = ((amount >= 0) ? "+" : "") + `${amount}`
+        floatyTexts.push(new floatyText(text, VIRTUAL_WIDTH * 0.4 + textWidth/2, 40, 30, color))
+    }
 
     /* --- GAME OBJECTS --- */
 
@@ -634,10 +648,7 @@
                         }
                         // add flavor text for score increase
                         let color = '#ffcc66'
-                        ctx.font = '30px system-ui, sans-serif'
-                        let textWidth = ctx.measureText(`Score: ${currentScore}`).width
-                        //                             text, x, y, size, color, textAlign = 'right', direction = "down", lifetime = 40
-                        floatyTexts.push(new floatyText(`+${pointCount}`, VIRTUAL_WIDTH * 0.4 + textWidth/2, 40, 30, color))
+                        score(pointCount, color)
                     }, 250)
                     break
                     
@@ -657,7 +668,7 @@
                     }
                     break
             }
-            currentScore++
+            // currentScore++
         }
 
         this.checkForCollisions = function (ball) {
@@ -689,10 +700,7 @@
                         color = '#ffffff'
                         break
                 }// projectiles and diamonds shouldn't be breaking blocks anyways
-                ctx.font = '30px system-ui, sans-serif'
-                let textWidth = ctx.measureText(`Score: ${currentScore}`).width
-                //                             text, x, y, size, color, textAlign = 'right', direction = "down", lifetime = 40
-                floatyTexts.push(new floatyText("+1", VIRTUAL_WIDTH * 0.4 + textWidth/2, 40, 30, color))
+                score(1, color)
                 
                 return true
             }
@@ -734,10 +742,7 @@
                     }
                     // add flavor text for score increase
                     let color = '#6464fa'
-                    ctx.font = '30px system-ui, sans-serif'
-                    let textWidth = ctx.measureText(`Score: ${currentScore}`).width
-                    //                             text, x, y, size, color, textAlign = 'right', direction = "down", lifetime = 40
-                    floatyTexts.push(new floatyText(`+${pointCount}`, VIRTUAL_WIDTH * 0.4 + textWidth/2, 40, 30, color))
+                    score(pointCount, color)
                     
                     ball.isDestroyed = true // Destroy the bomb ball
 
@@ -778,10 +783,7 @@
                             color = '#ffffff'
                             break
                     }// projectiles and diamonds shouldn't be breaking blocks anyways
-                    ctx.font = '30px system-ui, sans-serif'
-                    let textWidth = ctx.measureText(`Score: ${currentScore}`).width
-                    //                             text, x, y, size, color, textAlign = 'right', direction = "down", lifetime = 40
-                    floatyTexts.push(new floatyText("+1", VIRTUAL_WIDTH * 0.4 + textWidth/2, 40, 30, color))
+                    score(1, color)
                 }
             }
 
