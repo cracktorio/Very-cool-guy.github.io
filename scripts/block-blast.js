@@ -266,14 +266,13 @@
             ctx.globalAlpha = 1//don't wanna make everything else transparent
         }// end display
     }
-    function score(amount, color){
+    function score(amount, color = '#777'){
         if(amount === 0)
             return
         
         currentScore += amount
         
         // add flavor text for score increase
-        let color = '#777'
         ctx.font = '30px system-ui, sans-serif'
         let textWidth = ctx.measureText(`Score: ${currentScore}`).width
         //                             text, x, y, size, color, textAlign = 'right', direction = "down", lifetime = 40
