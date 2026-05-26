@@ -106,7 +106,7 @@
         ctx.font = '30px system-ui, sans-serif'
         let textWidth = ctx.measureText(`Lives: ${MAX_LIVES - livesLostCount}`).width
         //                             text, x, y, size, color, textAlign = 'right', direction = "down", lifetime = 40
-        floatyTexts.push(new floatyText("Lives -1", VIRTUAL_WIDTH * 0.2 + textWidth/2, 40, 30, '#ff0000', 'right', 'down', 60)) //flavor text to indicate that you lost a life
+        floatyTexts.push(new floatyText("Lives -1", VIRTUAL_WIDTH * 0.2 + textWidth/2, 40, 30, '#ff0000', 'right', 'down', 90)) //flavor text to indicate that you lost a life
     }
 
     function togglePause() {
@@ -220,7 +220,7 @@
 
     /* --- FLAVOR TEXT --- */
     //FLAVOR TEXT THAT I NAMED FLOATY TEXT BECAUSE IT FLOATS AWAY
-    function floatyText(text, x, y, size, color, textAlign = 'right', direction = "down", lifetime = 40){
+    function floatyText(text, x, y, size, color, textAlign = 'right', direction = "down", lifetime = 60){
         this.text = text
         this.x = x
         this.y = y
@@ -235,7 +235,7 @@
 
         //update position and check if too old
         this.update = function(dt){
-            let speed = dt * 30
+            let speed = dt * 45
             switch(this.direction){
                 case "up":
                     this.y-=speed
@@ -1044,6 +1044,8 @@
                         //         paddle.y = (VIRTUAL_HEIGHT - PADDLE_HEIGHT_INITIAL) / 2
                         //     }
                         // }
+                        
+                        score(-1, '#ff4444')
                         continue // Skip block collision check for this destroyed projectile
                     }
                     if (ball.type === 'diamond') {
@@ -1051,6 +1053,7 @@
                         diamondPaddle.bonus += DIAMOND_DAMAGE
                         diamondPaddle.h = paddle.h + diamondPaddle.bonus
                         balls.splice(i, 1)
+                        score((Math.random() < 0.5) ? 1 : 2, '#32ddff')
                         continue // Skip block collision check for this destroyed diamond
                     }
                 }
