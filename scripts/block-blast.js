@@ -1118,7 +1118,7 @@
                         // Pink hits paddle: reset pink paddle
                         pinkPaddle.h = paddle.h
                         balls.splice(i, 1)
-                        score((Math.random() < 0.5) ? 1 : 2, '#F5A9B8')
+                        score(5, '#F5A9B8')
                         continue // Skip block collision check for this destroyed diamond
                     }
                 }
