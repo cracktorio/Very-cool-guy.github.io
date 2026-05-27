@@ -1174,7 +1174,7 @@
                 // Pink Paddle collision
                 if (rectCircleColliding(pinkPaddle, ball)) {
                     //pink paddle ignores certain balls
-                    if(ball.type !== 'projectile' && ball.type !== 'diamond' && ball.type !== 'pink') {
+                    if(ball.type !== 'projectile' && ball.type !== 'diamond') {
                         // Calculate bounce angle based on relative hit position on the pink paddle
                         const relativeY = (ball.y - (pinkPaddle.y + pinkPaddle.h / 2)) / (pinkPaddle.h / 2)
                         const bounceAngle = relativeY * (Math.PI / 3) // Max angle of +/- 60 degrees
@@ -1185,6 +1185,13 @@
                         ball.x = pinkPaddle.x + pinkPaddle.w + ball.r + 0.1 // Reposition ball to prevent sticking
                         ball.isDisabled = false
                         ball.blocksHitCount = ball.type === 'piercing' ? 0 : Infinity // Reset block hit count
+                        if (ball.type === 'pink') {
+                            // Pink hits paddle: reset pink paddle
+                            pinkPaddle.h = paddle.h
+                            balls.splice(i, 1)
+                            score(5, '#F5A9B8')
+                            continue // Skip block collision check for this destroyed diamond
+                        }
                     }
                 }
             }
