@@ -86,6 +86,7 @@
         paddle.y = (VIRTUAL_HEIGHT - PADDLE_HEIGHT_INITIAL) / 2
         diamondPaddle.y = paddle.y
         pinkPaddle.y = 0
+        pinkPaddle.h = INITIAL_PINK_HEIGHT
         
         generateBlocks()
         livesLostCount = 0
@@ -1113,6 +1114,13 @@
                         score((Math.random() < 0.5) ? 1 : 2, '#32ddff')
                         continue // Skip block collision check for this destroyed diamond
                     }
+                    if (ball.type === 'pink') {
+                        // Pink hits paddle: reset pink paddle
+                        pinkPaddle.h = paddle.h
+                        balls.splice(i, 1)
+                        score((Math.random() < 0.5) ? 1 : 2, '#F5A9B8')
+                        continue // Skip block collision check for this destroyed diamond
+                    }
                 }
             }
             // Paddle collision
@@ -1154,12 +1162,19 @@
                     score((Math.random() < 0.5) ? 1 : 2, '#32ddff')
                     continue // Skip block collision check for this destroyed diamond
                 }
+                if (ball.type === 'pink') {
+                    // Pink hits paddle: reset pink paddle
+                    pinkPaddle.h = paddle.h
+                    balls.splice(i, 1)
+                    score((Math.random() < 0.5) ? 1 : 2, '#F5A9B8')
+                    continue // Skip block collision check for this destroyed diamond
+                }
             }
             if(pinkPaddle.h > 0) {
                 // Pink Paddle collision
                 if (rectCircleColliding(pinkPaddle, ball)) {
                     //pink paddle ignores certain balls
-                    if(ball.type !== 'projectile' && ball.type !== 'diamond') {
+                    if(ball.type !== 'projectile' && ball.type !== 'diamond' && ball.type !== 'pink') {
                         // Calculate bounce angle based on relative hit position on the pink paddle
                         const relativeY = (ball.y - (pinkPaddle.y + pinkPaddle.h / 2)) / (pinkPaddle.h / 2)
                         const bounceAngle = relativeY * (Math.PI / 3) // Max angle of +/- 60 degrees
