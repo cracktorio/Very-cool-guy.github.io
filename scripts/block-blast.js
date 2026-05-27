@@ -28,7 +28,7 @@
     const PADDLE_SPEED = 420
     const INITIAL_DIAMOND_BONUS = 0
     const INITIAL_PINK_HEIGHT = 0
-    const PINK_DEPLETION_RATE = 30 //The rate at which the pink paddle shrinks
+    const PINK_DEPLETION_RATE = 5 //The rate at which the pink paddle shrinks
 
     /* --- BALL/PROJECTILE PROPERTIES --- */
     const BALL_RADIUS = 10
