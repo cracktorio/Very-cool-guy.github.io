@@ -551,7 +551,7 @@
                         case 'diamond':
                             color = '#32ddff'
                             break
-                        case 'pink'
+                        case 'pink':
                             color = '#F5A9B8'
                             break
                     }
